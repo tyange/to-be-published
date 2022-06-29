@@ -3,7 +3,7 @@ import BookList from "../components/BookList.vue";
 </script>
 
 <template>
-  <main>
+  <main class="w-full flex justify-center items-center">
     <div>
       <BookList />
     </div>
