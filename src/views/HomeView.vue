@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import BookList from "../components/BookList.vue";
 </script>
 
 <template>
   <main>
     <div>
-      <p>hi</p>
+      <BookList />
     </div>
   </main>
 </template>
