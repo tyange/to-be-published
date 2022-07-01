@@ -43,32 +43,55 @@ interface Book {
 export const useBooksStore = defineStore({
   id: "books",
   state: () => ({
-    books: [] as Array<Book>,
+    totalCount: 0,
+    pageNum: 0,
+    books: [] as Book[],
   }),
   getters: {
-    getBooks(): Array<Book> {
+    getBooks(): Book[] {
       return this.books;
     },
   },
   actions: {
-    async fetchBooks() {
+    async fetchBooks(inputParam: {
+      enteredKeyword: string;
+      selectedKeywordType: string;
+      enteredStartingDate: string;
+      enteredEndDate: string;
+      selectedOrderBy: string;
+      selectedSort: string;
+      isEbook: string;
+    }) {
+      const params: {
+        [key: string]: string | number;
+      } = {
+        page_no: 1,
+        page_size: 10,
+        cert_key: "07cd1b7cc009c125b620be82c2af4f40",
+        result_style: "json",
+        deposit_yn: "N",
+        ebook_yn: inputParam.isEbook,
+        start_publish_date: inputParam.enteredStartingDate,
+        end_publish_data: inputParam.enteredEndDate,
+        order_by: inputParam.selectedOrderBy,
+        sort: inputParam.selectedSort,
+      };
+
+      params[inputParam.selectedKeywordType] = inputParam.enteredKeyword;
+
       const res = await axios.get("https://www.nl.go.kr/seoji/SearchApi.do", {
-        params: {
-          page_no: 1,
-          page_size: 10,
-          cert_key: "07cd1b7cc009c125b620be82c2af4f40",
-          result_style: "json",
-          deposit_yn: "N",
-          ebook_yn: "N",
-          start_publish_date: "20220101",
-          end_publish_data: "20230628",
-          order_by: "DESC",
-          sort: "PUBLISH_PREDATE",
-          publisher: "문학동네",
-        },
+        params,
       });
 
-      this.books = await res.data;
+      const data: {
+        PAGE_NUM: string;
+        TOTAL_COUNT: string;
+        docs: Book[];
+      } = await res.data;
+
+      this.totalCount = parseInt(data.TOTAL_COUNT);
+      this.pageNum = parseInt(data.PAGE_NUM);
+      this.books = data.docs;
     },
   },
 });

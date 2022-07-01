@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useBooksStore } from "@/stores/books";
+
+const store = useBooksStore();
 
 const now = new Date();
 
@@ -14,7 +17,7 @@ const enteredStartingDate = ref(now.toISOString().slice(0, 10));
 const enteredEndDate = ref(new Date(now.setFullYear(now.getFullYear() + 1)).toISOString().slice(0, 10));
 
 // "ASC", "DESC"
-const selectedOrderBy = ref("ASC");
+const selectedOrderBy = ref("DESC");
 
 // "PUBLISH_PREDATE", "INPUT_DATE", "INDEX_TITLE", "INDEX_PUBLISHER"
 const selectedSort = ref("PUBLISH_PREDATE");
@@ -26,7 +29,7 @@ const isEbook = ref("N");
 const logging = (e: Event) => {
   e.preventDefault();
 
-  console.log({
+  store.fetchBooks({
     enteredKeyword: enteredKeyword.value,
     selectedKeywordType: selectedKeywordType.value,
     enteredStartingDate: enteredStartingDate.value,
