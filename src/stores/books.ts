@@ -58,12 +58,13 @@ export const useBooksStore = defineStore({
           page_size: 10,
           cert_key: "07cd1b7cc009c125b620be82c2af4f40",
           result_style: "json",
+          deposit_yn: "N",
           ebook_yn: "N",
           start_publish_date: "20220101",
           end_publish_data: "20230628",
-          publisher: "문학동네",
           order_by: "DESC",
           sort: "PUBLISH_PREDATE",
+          publisher: "문학동네",
         },
       });
 
