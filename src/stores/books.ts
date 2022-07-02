@@ -67,7 +67,7 @@ export const useBooksStore = defineStore({
       } = {
         page_no: 1,
         page_size: 10,
-        cert_key: "07cd1b7cc009c125b620be82c2af4f40",
+        cert_key: import.meta.env.VITE_SEOJI_API_KEY,
         result_style: "json",
         deposit_yn: "N",
         ebook_yn: inputParam.isEbook,
