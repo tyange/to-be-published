@@ -5,7 +5,7 @@ import BookForm from "@/components/BookForm.vue";
 
 <template>
   <main class="w-full flex justify-center items-center">
-    <div>
+    <div class="w-1/2 flex flex-col items-center gap-10 pt-10">
       <BookForm />
       <BookList />
     </div>

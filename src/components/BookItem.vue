@@ -52,15 +52,15 @@ const convertedPreDate = computed(() => {
         {{ title }}
       </p>
     </div>
-    <div class="relative p-6 flex gap-2">
+    <div class="relative p-6 flex gap-4">
       <span class="absolute top-0 left-0 text-xs text-gray-300">
         작가
       </span>
       <span v-if="convertedAuthors === null">
         {{ author }}
       </span>
-      <span v-for="convertedAuthor in convertedAuthors" :key="convertedAuthor">
-        {{ convertedAuthor }};
+      <span v-for="convertedAuthor in convertedAuthors" :key="convertedAuthor" style="word-break: keep-all">
+        {{ convertedAuthor }}
       </span>
     </div>
     <div class="flex gap-5">

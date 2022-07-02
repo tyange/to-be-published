@@ -26,7 +26,7 @@ const selectedSort = ref("PUBLISH_PREDATE");
 const isEbook = ref("N");
 
 
-const logging = (e: Event) => {
+const submitToSeojiAPI = (e: Event) => {
   e.preventDefault();
 
   store.fetchBooks({
@@ -41,72 +41,81 @@ const logging = (e: Event) => {
 };
 </script>
 <template>
-  <form v-on:submit="logging">
-    <div>
-      <select name="keyword-type" v-model="selectedKeywordType">
-        <option value="isbn">ISBN</option>
-        <option value="title">제목</option>
-        <option value="series_title">
-          시리즈명
-        </option>
-        <option value="publisher">
-          출판사명
-        </option>
-        <option value="author">
-          저자명
-        </option>
-      </select>
-      <input type="text" v-model="enteredKeyword" placeholder="검색어">
-    </div>
-    <div>
-      <p>
+  <form v-on:submit="submitToSeojiAPI" class="flex flex-col gap-5 py-10 px-16 border border-blue-200 rounded-xl">
+    <fieldset>
+      <legend class="text-gray-400 mb-3">
+        키워드
+      </legend>
+      <div class="flex justify-between">
+        <select name="keyword-type" v-model="selectedKeywordType" class="text-sm">
+          <option value="isbn">ISBN</option>
+          <option value="title">제목</option>
+          <option value="series_title">
+            시리즈명
+          </option>
+          <option value="publisher">
+            출판사명
+          </option>
+          <option value="author">
+            저자명
+          </option>
+        </select>
+        <input type="text" v-model="enteredKeyword" class="border rounded-md w-3/4">
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend class="text-gray-400 mb-3">
         출판예정일
-      </p>
-      <label for="pre-publishing-start-date">
-        시작
-      </label>
-      <input type="date" name="pre-publishing-start-date" v-model="enteredStartingDate">
-      <label for="pre-publishing-end-date">
-        끝
-      </label>
-      <input type="date" name="pre-publishing-end-date" v-model="enteredEndDate">
-    </div>
-    <div>
-      <fieldset>
-        <div class="flex flex-col">
-          <label for="order-by" class="">
-            정렬 방식
+      </legend>
+      <div class="flex gap-5">
+        <div class="flex items-center gap-5">
+          <label for="pre-publishing-start-date" class="text-sm">
+            시작
           </label>
-          <select name="order-by" v-model="selectedOrderBy" class="text-sm">
-            <option value="ASC">오름차순</option>
-            <option value="DESC">내림차순</option>
-          </select>
+          <input type="date" name="pre-publishing-start-date" v-model="enteredStartingDate">
         </div>
-      </fieldset>
-      <fieldset>
-        <div class="flex flex-col">
-          <label for="sort">
-            정렬 기준
+        <div class="flex items-center gap-5">
+          <label for="pre-publishing-end-date" class="text-sm">
+            끝
           </label>
-          <select name="sort" v-model="selectedSort" class="text-sm">
-            <option value="PUBLISH_PREDATE">출간예정일</option>
-            <option value="INPUT_DATE">서지 정보 등록 날짜</option>
-            <option value="INDEX_TITLE">도서명</option>
-            <option value="INDEX_PUBLISHER">출판사명</option>
-          </select>
+          <input type="date" name="pre-publishing-end-date" v-model="enteredEndDate">
         </div>
-      </fieldset>
-      <fieldset>
-        <div>
-          <label for="ebook">
-            E-BOOK
-          </label>
-          <input type="checkbox" name="ebook" v-model="isEbook" value="Y">
-        </div>
-      </fieldset>
-    </div>
-    <button>
-      submit
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="flex flex-col gap-3">
+        <label for="order-by" class="text-gray-400">
+          정렬 방식
+        </label>
+        <select name="order-by" v-model="selectedOrderBy" class="text-sm">
+          <option value="ASC">오름차순</option>
+          <option value="DESC">내림차순</option>
+        </select>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="flex flex-col gap-3">
+        <label for="sort" class="text-gray-400">
+          정렬 기준
+        </label>
+        <select name="sort" v-model="selectedSort" class="text-sm">
+          <option value="PUBLISH_PREDATE">출간예정일</option>
+          <option value="INPUT_DATE">서지 정보 등록 날짜</option>
+          <option value="INDEX_TITLE">도서명</option>
+          <option value="INDEX_PUBLISHER">출판사명</option>
+        </select>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="flex items-center gap-20">
+        <label for="ebook" class="text-gray-400">
+          E-BOOK
+        </label>
+        <input type="checkbox" name="ebook" v-model="isEbook" value="Y">
+      </div>
+    </fieldset>
+    <button class="rounded-md shadow-sm w-full p-3 bg-blue-100 hover:bg-blue-300 transition-all">
+      검색
     </button>
   </form>
 </template>
