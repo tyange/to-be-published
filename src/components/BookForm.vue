@@ -72,38 +72,38 @@ const logging = (e: Event) => {
       <input type="date" name="pre-publishing-end-date" v-model="enteredEndDate">
     </div>
     <div>
-      <div>
-        <label for="order-by">
-          정렬 방식
-        </label>
-        <select name="order-by" v-model="selectedOrderBy">
-          <option value="ASC">오름차순</option>
-          <option value="DESC">내림차순</option>
-        </select>
-      </div>
-      <div>
-        <label for="sort">
-          정렬 기준
-        </label>
-        <select name="sort" v-model="selectedSort">
-          // "PUBLISH_PREDATE", "INPUT_DATE", "INDEX_TITLE", "INDEX_PUBLISHER"
-          <option value="PUBLISH_PREDATE">출간예정일</option>
-          <option value="INPUT_DATE">서지 정보 등록 날짜</option>
-          <option value="INDEX_TITLE">도서명</option>
-          <option value="INDEX_PUBLISHER">출판사명</option>
-        </select>
-      </div>
-      <div>
-        <fieldset>
-          <legend>
-            E-BOOK 여부
-          </legend>
-          <input type="radio" name="not-ebook" v-model="isEbook" value="N">
-          <label for="not-ebook">N</label>
-          <input type="radio" name="ebook" v-model="isEbook" value="Y">
-          <label for="ebook">Y</label>
-        </fieldset>
-      </div>
+      <fieldset>
+        <div class="flex flex-col">
+          <label for="order-by" class="">
+            정렬 방식
+          </label>
+          <select name="order-by" v-model="selectedOrderBy" class="text-sm">
+            <option value="ASC">오름차순</option>
+            <option value="DESC">내림차순</option>
+          </select>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="flex flex-col">
+          <label for="sort">
+            정렬 기준
+          </label>
+          <select name="sort" v-model="selectedSort" class="text-sm">
+            <option value="PUBLISH_PREDATE">출간예정일</option>
+            <option value="INPUT_DATE">서지 정보 등록 날짜</option>
+            <option value="INDEX_TITLE">도서명</option>
+            <option value="INDEX_PUBLISHER">출판사명</option>
+          </select>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div>
+          <label for="ebook">
+            E-BOOK
+          </label>
+          <input type="checkbox" name="ebook" v-model="isEbook" value="Y">
+        </div>
+      </fieldset>
     </div>
     <button>
       submit
