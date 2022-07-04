@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useBooksStore } from "@/stores/books";
+import FormGuide from "@/components/FormGuide.vue";
 
 const store = useBooksStore();
 
@@ -14,7 +15,9 @@ const enteredKeyword = ref("");
 
 // date
 const enteredStartingDate = ref(now.toISOString().slice(0, 10));
-const enteredEndDate = ref(new Date(now.setFullYear(now.getFullYear() + 1)).toISOString().slice(0, 10));
+const enteredEndDate = ref(
+  new Date(now.setFullYear(now.getFullYear() + 1)).toISOString().slice(0, 10)
+);
 
 // "ASC", "DESC"
 const selectedOrderBy = ref("DESC");
@@ -24,7 +27,6 @@ const selectedSort = ref("PUBLISH_PREDATE");
 
 // "Y", "N"
 const isEbook = ref("N");
-
 
 const submitToSeojiAPI = (e: Event) => {
   e.preventDefault();
@@ -41,11 +43,14 @@ const submitToSeojiAPI = (e: Event) => {
 };
 </script>
 <template>
-  <form v-on:submit="submitToSeojiAPI" class="flex flex-col gap-5 py-10 px-16 border border-blue-200 rounded-xl">
+  <form v-on:submit="submitToSeojiAPI" class="flex flex-col gap-6 py-10 px-16 border border-blue-200 rounded-xl">
     <fieldset>
-      <legend class="text-gray-400 mb-3">
-        키워드
-      </legend>
+      <div class="flex items-center mb-3 gap-2">
+        <legend class="text-gray-400">
+          키워드
+        </legend>
+        <FormGuide guide-for="keyword" />
+      </div>
       <div class="flex justify-between">
         <select name="keyword-type" v-model="selectedKeywordType" class="text-sm">
           <option value="isbn">ISBN</option>
@@ -64,9 +69,12 @@ const submitToSeojiAPI = (e: Event) => {
       </div>
     </fieldset>
     <fieldset>
-      <legend class="text-gray-400 mb-3">
-        출판예정일
-      </legend>
+      <div class="flex items-center mb-4 gap-2">
+        <legend class="text-gray-400">
+          출판예정일
+        </legend>
+        <FormGuide guide-for="pre-publish" />
+      </div>
       <div class="flex gap-5">
         <div class="flex items-center gap-5">
           <label for="pre-publishing-start-date" class="text-sm">
@@ -84,20 +92,11 @@ const submitToSeojiAPI = (e: Event) => {
     </fieldset>
     <fieldset>
       <div class="flex flex-col gap-3">
-        <label for="order-by" class="text-gray-400">
-          정렬 방식
-        </label>
-        <select name="order-by" v-model="selectedOrderBy" class="text-sm">
-          <option value="ASC">오름차순</option>
-          <option value="DESC">내림차순</option>
-        </select>
-      </div>
-    </fieldset>
-    <fieldset>
-      <div class="flex flex-col gap-3">
-        <label for="sort" class="text-gray-400">
-          정렬 기준
-        </label>
+        <div class="flex items-center mb-1 gap-1">
+          <label for="sort" class="text-gray-400">
+            정렬 기준
+          </label>
+        </div>
         <select name="sort" v-model="selectedSort" class="text-sm">
           <option value="PUBLISH_PREDATE">출간예정일</option>
           <option value="INPUT_DATE">서지 정보 등록 날짜</option>
@@ -107,11 +106,32 @@ const submitToSeojiAPI = (e: Event) => {
       </div>
     </fieldset>
     <fieldset>
+      <div class="flex flex-col gap-3">
+        <div class="flex items-center mb-1 gap-1">
+          <label for="order-by" class="text-gray-400">
+            정렬 방식
+          </label>
+        </div>
+        <select name="order-by" v-model="selectedOrderBy" class="text-sm">
+          <option value="ASC">오름차순</option>
+          <option value="DESC">내림차순</option>
+        </select>
+      </div>
+    </fieldset>
+    <fieldset>
       <div class="flex items-center gap-20">
-        <label for="ebook" class="text-gray-400">
-          E-BOOK
-        </label>
-        <input type="checkbox" name="ebook" v-model="isEbook" value="Y">
+        <div class="flex items-center gap-4">
+          <label for="ebook" class="text-gray-400">
+            전자책
+          </label>
+          <input type="radio" name="ebook" v-model="isEbook" value="Y">
+        </div>
+        <div class="flex items-center gap-4">
+          <label for="ebook" class="text-gray-400">
+            종이책
+          </label>
+          <input type="radio" name="ebook" checked v-model="isEbook" value="N">
+        </div>
       </div>
     </fieldset>
     <button class="rounded-md shadow-sm w-full p-3 bg-blue-100 hover:bg-blue-300 transition-all">
