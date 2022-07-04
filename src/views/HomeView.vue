@@ -5,7 +5,7 @@ import BookForm from "@/components/BookForm.vue";
 </script>
 
 <template>
-  <header class="w-full flex justify-center items-center h-44">
+  <header class="w-full flex justify-center items-center h-48">
     <IntroHeader/>
   </header>
   <main class="w-full flex justify-center items-center">

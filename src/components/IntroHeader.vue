@@ -1,5 +1,5 @@
 <template>
-  <details open="true" class="w-6/12">
+  <details open="true">
     <summary>
       <p class="text-xl italic text-center">
         출간예정도서 검색기
@@ -17,6 +17,7 @@
 
 <style>
 details {
+  width: 31rem;
   word-break: keep-all;
 }
 
