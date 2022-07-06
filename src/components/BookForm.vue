@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useBooksStore } from "@/stores/books";
 import FormGuide from "@/components/FormGuide.vue";
 

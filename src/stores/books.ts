@@ -40,12 +40,23 @@ interface Book {
   SET_ADD_CODE: string;
 }
 
+interface InputParams {
+  [key: string]: string | number;
+}
+
+interface ResponseData {
+  PAGE_NO: string;
+  TOTAL_COUNT: string;
+  docs: Book[];
+}
+
 export const useBooksStore = defineStore({
   id: "books",
   state: () => ({
     totalCount: 0,
-    pageNum: 0,
+    currentPageNo: 0,
     books: [] as Book[],
+    savedParams: {} as InputParams,
   }),
   getters: {
     getBooks(): Book[] {
@@ -53,44 +64,50 @@ export const useBooksStore = defineStore({
     },
   },
   actions: {
-    async fetchBooks(inputParam: {
-      enteredKeyword: string;
-      selectedKeywordType: string;
-      enteredStartingDate: string;
-      enteredEndDate: string;
-      selectedOrderBy: string;
-      selectedSort: string;
-      isEbook: string;
-    }) {
+    async fetchBooks(inputParams: InputParams) {
       const params: {
         [key: string]: string | number;
       } = {
         page_no: 1,
-        page_size: 10,
+        page_size: import.meta.env.VITE_PAGE_SIZE,
         cert_key: import.meta.env.VITE_SEOJI_API_KEY,
         result_style: "json",
         deposit_yn: "N",
-        ebook_yn: inputParam.isEbook,
-        start_publish_date: inputParam.enteredStartingDate,
-        end_publish_data: inputParam.enteredEndDate,
-        order_by: inputParam.selectedOrderBy,
-        sort: inputParam.selectedSort,
+        ebook_yn: inputParams.isEbook,
+        start_publish_date: inputParams.enteredStartingDate,
+        end_publish_data: inputParams.enteredEndDate,
+        order_by: inputParams.selectedOrderBy,
+        sort: inputParams.selectedSort,
       };
 
-      params[inputParam.selectedKeywordType] = inputParam.enteredKeyword;
+      params[inputParams.selectedKeywordType] = inputParams.enteredKeyword;
 
       const res = await axios.get("https://www.nl.go.kr/seoji/SearchApi.do", {
         params,
       });
 
-      const data: {
-        PAGE_NUM: string;
-        TOTAL_COUNT: string;
-        docs: Book[];
-      } = await res.data;
+      const data: ResponseData = await res.data;
+
+      console.log(data);
 
       this.totalCount = parseInt(data.TOTAL_COUNT);
-      this.pageNum = parseInt(data.PAGE_NUM);
+      this.currentPageNo = parseInt(data.PAGE_NO);
+      this.books = data.docs;
+      this.savedParams = params;
+    },
+    async fetchBooksByPageNo(pageNo: number) {
+      const params = this.savedParams;
+
+      params.page_no = pageNo;
+
+      const res = await axios.get("https://www.nl.go.kr/seoji/SearchApi.do", {
+        params,
+      });
+
+      const data: ResponseData = await res.data;
+
+      this.totalCount = parseInt(data.TOTAL_COUNT);
+      this.currentPageNo = parseInt(data.PAGE_NO);
       this.books = data.docs;
     },
   },
