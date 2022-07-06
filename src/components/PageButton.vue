@@ -22,7 +22,8 @@ const isHighlight = computed(() => {
 });
 </script>
 <template>
-  <button v-on:click="fetchBooksByPageNum" class="border-2 px-2 shadow-sm rounded-lg">
+  <button v-on:click="fetchBooksByPageNum" class="border-2 px-2 shadow-sm rounded-lg"
+          v-bind:class="{'font-semibold bg-neutral-300': isHighlight}">
     {{ props.pageNum }}
   </button>
 </template>
