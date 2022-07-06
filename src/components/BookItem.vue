@@ -48,7 +48,7 @@ const convertedPreDate = computed(() => {
       <span class="absolute top-0 left-0 text-xs text-gray-300">
         도서명
       </span>
-      <p>
+      <p class="text-sm md:text-base">
         {{ title }}
       </p>
     </div>
@@ -56,25 +56,33 @@ const convertedPreDate = computed(() => {
       <span class="absolute top-0 left-0 text-xs text-gray-300">
         작가
       </span>
-      <span v-if="convertedAuthors === null">
-        {{ author }}
+      <span class="text-sm md:text-base" v-if="convertedAuthors === null">
+          {{ author }}
       </span>
-      <span v-for="convertedAuthor in convertedAuthors" :key="convertedAuthor" style="word-break: keep-all">
-        {{ convertedAuthor }}
-      </span>
+      <div v-if="convertedAuthors !== null" class="grid md:grid-cols-5 gap-2"
+           v-bind:class="{'grid-cols-3': Object.keys(convertedAuthors).length > 2, 'grid-cols-2': Object.keys(convertedAuthors).length < 3}">
+        <span class="text-sm md:text-base flex" v-for="(convertedAuthor, index) in convertedAuthors"
+              :key="convertedAuthor"
+              style="word-break: keep-all">
+          {{ convertedAuthor }}
+          <span v-if="index !== Object.keys(convertedAuthors).length -1">
+            ,
+          </span>
+        </span>
+      </div>
     </div>
     <div class="flex gap-5">
       <div class="relative p-6 flex gap-2">
         <span class="absolute top-0 left-0 text-xs text-gray-300">
           ISBN
         </span>
-        <span>{{ convertedIsbn }}</span>
+        <span class="text-sm md:text-base">{{ convertedIsbn }}</span>
       </div>
       <div class="relative p-6 flex gap-2">
         <span class="absolute top-0 left-0 text-xs text-gray-300">
           출판사
         </span>
-        <span>{{ publisher }}</span>
+        <span class="text-sm md:text-base">{{ publisher }}</span>
       </div>
     </div>
     <div class="flex gap-5">
@@ -82,13 +90,13 @@ const convertedPreDate = computed(() => {
         <span class="absolute top-0 left-0 text-xs text-gray-300">
           예정 가격(원)
         </span>
-        <span>{{ convertedPrice }}</span>
+        <span class="text-sm md:text-base">{{ convertedPrice }}</span>
       </div>
       <div class="relative p-6 flex gap-2">
         <span class="absolute top-0 left-0 text-xs text-gray-300">
           출간예정일
         </span>
-        <span>{{ convertedPreDate }}</span>
+        <span class="text-sm md:text-base">{{ convertedPreDate }}</span>
       </div>
     </div>
   </div>
