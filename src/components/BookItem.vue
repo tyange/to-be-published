@@ -43,7 +43,7 @@ const convertedPreDate = computed(() => {
 </script>
 
 <template>
-  <div>
+  <div class="w-full">
     <div class="relative p-6">
       <span class="absolute top-0 left-0 text-xs text-gray-300">
         도서명
@@ -59,7 +59,7 @@ const convertedPreDate = computed(() => {
       <span class="text-sm md:text-base" v-if="convertedAuthors === null">
           {{ author }}
       </span>
-      <div v-if="convertedAuthors !== null" class="grid md:grid-cols-5 gap-2"
+      <div v-if="convertedAuthors !== null" class="grid md:grid-cols-3 gap-2"
            v-bind:class="{'grid-cols-3': Object.keys(convertedAuthors).length > 2, 'grid-cols-2': Object.keys(convertedAuthors).length < 3}">
         <span class="text-sm md:text-base flex" v-for="(convertedAuthor, index) in convertedAuthors"
               :key="convertedAuthor"

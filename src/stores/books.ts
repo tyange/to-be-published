@@ -88,8 +88,6 @@ export const useBooksStore = defineStore({
 
       const data: ResponseData = await res.data;
 
-      console.log(data);
-
       this.totalCount = parseInt(data.TOTAL_COUNT);
       this.currentPageNo = parseInt(data.PAGE_NO);
       this.books = data.docs;
