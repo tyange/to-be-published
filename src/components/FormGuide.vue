@@ -31,8 +31,8 @@ const guideToggleHandler = () => {
 </script>
 
 <template>
-  <div class="flex items-center gap-2 text-sm text-gray-400" v-bind:class="{'inline':isOpen}" v-on:click="guideToggleHandler">
+  <div class="flex items-center gap-2" v-bind:class="{'inline':isOpen}" v-on:click="guideToggleHandler">
     <QuestionMarkCircleIcon class="h-4 w-4 text-gray-400" />
-    <span v-bind:class="{'inline': isOpen, 'hidden': !isOpen}">{{ guideMessage }}</span>
+    <span v-bind:class="{'inline': isOpen, 'hidden': !isOpen}" class="text-xs text-gray-400 md:text-sm">{{ guideMessage }}</span>
   </div>
 </template>

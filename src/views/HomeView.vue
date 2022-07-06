@@ -24,7 +24,7 @@ const pageCounts = computed(() => {
     <IntroHeader/>
   </header>
   <main class="w-full flex justify-center items-center">
-    <div class="w-1/2 flex flex-col items-center gap-10">
+    <div class="flex w-full p-2 md:p-0 md:w-auto flex-col items-center gap-10">
       <BookForm />
       <BookList />
       <PageButtons v-if="store.totalCount > 0" :page-counts="pageCounts"/>

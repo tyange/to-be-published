@@ -43,10 +43,10 @@ const submitToSeojiAPI = (e: Event) => {
 };
 </script>
 <template>
-  <form v-on:submit="submitToSeojiAPI" class="flex flex-col gap-6 py-10 px-16 border border-blue-200 rounded-xl">
+  <form v-on:submit="submitToSeojiAPI" class="flex flex-col items gap-6 w-full p-3 md:w-auto md:py-10 md:px-16 border border-blue-200 rounded-xl">
     <fieldset>
       <div class="flex items-center mb-3 gap-2">
-        <legend class="text-gray-400">
+        <legend class="text-gray-400 text-sm md:text-base">
           키워드
         </legend>
         <FormGuide guide-for="keyword" />
@@ -70,19 +70,19 @@ const submitToSeojiAPI = (e: Event) => {
     </fieldset>
     <fieldset>
       <div class="flex items-center mb-4 gap-2">
-        <legend class="text-gray-400">
+        <legend class="text-gray-400 text-sm md:text-base">
           출판예정일
         </legend>
         <FormGuide guide-for="pre-publish" />
       </div>
-      <div class="flex gap-5">
-        <div class="flex items-center gap-5">
+      <div class="flex gap-5 flex-col md:flex-row">
+        <div class="flex items-center justify-between md:gap-5">
           <label for="pre-publishing-start-date" class="text-sm">
             시작
           </label>
           <input type="date" name="pre-publishing-start-date" v-model="enteredStartingDate">
         </div>
-        <div class="flex items-center gap-5">
+        <div class="flex items-center justify-between md:gap-5">
           <label for="pre-publishing-end-date" class="text-sm">
             끝
           </label>
@@ -93,7 +93,7 @@ const submitToSeojiAPI = (e: Event) => {
     <fieldset>
       <div class="flex flex-col gap-3">
         <div class="flex items-center mb-1 gap-1">
-          <label for="sort" class="text-gray-400">
+          <label for="sort" class="text-gray-400 text-sm md:text-base">
             정렬 기준
           </label>
         </div>
@@ -108,7 +108,7 @@ const submitToSeojiAPI = (e: Event) => {
     <fieldset>
       <div class="flex flex-col gap-3">
         <div class="flex items-center mb-1 gap-1">
-          <label for="order-by" class="text-gray-400">
+          <label for="order-by" class="text-gray-400 text-sm md:text-base">
             정렬 방식
           </label>
         </div>
@@ -121,20 +121,20 @@ const submitToSeojiAPI = (e: Event) => {
     <fieldset>
       <div class="flex items-center gap-20">
         <div class="flex items-center gap-4">
-          <label for="ebook" class="text-gray-400">
+          <label for="ebook" class="text-gray-400 text-sm md:text-base">
             전자책
           </label>
           <input type="radio" name="ebook" v-model="isEbook" value="Y">
         </div>
         <div class="flex items-center gap-4">
-          <label for="ebook" class="text-gray-400">
+          <label for="ebook" class="text-gray-400 text-sm md:text-base">
             종이책
           </label>
           <input type="radio" name="ebook" checked v-model="isEbook" value="N">
         </div>
       </div>
     </fieldset>
-    <button class="rounded-md shadow-sm w-full p-3 bg-blue-100 hover:bg-blue-300 transition-all">
+    <button class="rounded-md shadow-sm w-full p-3 bg-blue-100 hover:bg-blue-300 transition-all text-sm md:text-base">
       검색
     </button>
   </form>
