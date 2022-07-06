@@ -26,6 +26,10 @@ details summary::marker {
   content: "";
 }
 
+details summary::-webkit-details-marker {
+  display:none;
+}
+
 details[open] summary p span {
   display: inline;
 }
