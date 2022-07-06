@@ -8,7 +8,7 @@
 
 with Vue3 + Typescript, Pinia, Vercel 
 
-[//]: # ([https://tyange.gatsbyjs.io/]&#40;https://tyange.gatsbyjs.io/&#41;)
+[https://to-be-published.vercel.app/](https://to-be-published.vercel.app/)
 
 ## 만든 사람
 
