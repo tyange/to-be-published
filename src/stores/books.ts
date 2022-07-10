@@ -53,10 +53,12 @@ interface ResponseData {
 export const useBooksStore = defineStore({
   id: "books",
   state: () => ({
+    isLoading: false,
     totalCount: 0,
     currentPageNo: 0,
     books: [] as Book[],
     savedParams: {} as InputParams,
+    error: null,
   }),
   getters: {
     getBooks(): Book[] {
@@ -64,7 +66,14 @@ export const useBooksStore = defineStore({
     },
   },
   actions: {
+    errorClear() {
+      this.error = null;
+    },
     async fetchBooks(inputParams: InputParams) {
+      this.errorClear();
+      this.isLoading = true;
+
+      const url = "https://www.nl.go.kr/seoji/SearchApi.do";
       const params: {
         [key: string]: string | number;
       } = {
@@ -79,34 +88,50 @@ export const useBooksStore = defineStore({
         order_by: inputParams.selectedOrderBy,
         sort: inputParams.selectedSort,
       };
-
       params[inputParams.selectedKeywordType] = inputParams.enteredKeyword;
 
-      const res = await axios.get("https://www.nl.go.kr/seoji/SearchApi.do", {
-        params,
-      });
-
-      const data: ResponseData = await res.data;
-
-      this.totalCount = parseInt(data.TOTAL_COUNT);
-      this.currentPageNo = parseInt(data.PAGE_NO);
-      this.books = data.docs;
       this.savedParams = params;
+
+      try {
+        const res = await axios.get(url, {
+          params,
+        });
+
+        const data: ResponseData = await res.data;
+
+        this.totalCount = parseInt(data.TOTAL_COUNT);
+        this.currentPageNo = parseInt(data.PAGE_NO);
+        this.books = data.docs;
+        this.isLoading = false;
+      } catch (err: any) {
+        this.isLoading = false;
+        console.log(err);
+        this.error = err;
+      }
     },
     async fetchBooksByPageNo(pageNo: number) {
-      const params = this.savedParams;
+      this.errorClear();
+      this.isLoading = true;
+      try {
+        const params = this.savedParams;
 
-      params.page_no = pageNo;
+        params.page_no = pageNo;
 
-      const res = await axios.get("https://www.nl.go.kr/seoji/SearchApi.do", {
-        params,
-      });
+        const res = await axios.get("https://www.nl.go.kr/seoji/SearchApi.do", {
+          params,
+        });
 
-      const data: ResponseData = await res.data;
+        const data: ResponseData = await res.data;
 
-      this.totalCount = parseInt(data.TOTAL_COUNT);
-      this.currentPageNo = parseInt(data.PAGE_NO);
-      this.books = data.docs;
+        this.totalCount = parseInt(data.TOTAL_COUNT);
+        this.currentPageNo = parseInt(data.PAGE_NO);
+        this.books = data.docs;
+        this.isLoading = false;
+      } catch (err: any) {
+        this.isLoading = false;
+        console.log(err);
+        this.error = err;
+      }
     },
   },
 });
