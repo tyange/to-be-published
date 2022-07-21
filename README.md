@@ -2,11 +2,9 @@
 
 출간예정도서 검색기.
 <br>
-<br>
+with Vue3 + Typescript, Pinia, Vercel 
 
 ## 배포
-
-with Vue3 + Typescript, Pinia, Vercel 
 
 [https://to-be-published.vercel.app/](https://to-be-published.vercel.app/)
 
