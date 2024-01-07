@@ -1,8 +1,6 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 <template>
-  <div class="w-full flex justify-center">
+  <div class="flex justify-center w-full">
     <div class="lds-ellipsis">
       <div></div>
       <div></div>
@@ -75,5 +73,4 @@
     transform: translate(24px, 0);
   }
 }
-
 </style>
