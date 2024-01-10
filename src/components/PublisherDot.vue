@@ -1,13 +1,17 @@
 <script setup lang="ts">
-defineProps<{ index: number }>()
+import type { Publisher } from '@/types/publisher'
+
+defineProps<{ index: number; item: Publisher }>()
 defineEmits<{
   (name: 'click-handler', e: Event): void
 }>()
 </script>
 <template>
-  <div
-    class="w-20 h-20 m-4 border-2 rounded-full publisher-dot"
+  <button
+    class="w-20 h-20 m-4 overflow-hidden border border-gray-200 rounded-full cursor-pointer publisher-dot"
     :data-index="index"
     @click="$emit('click-handler', $event)"
-  ></div>
+  >
+    <img :src="item.publisherImageSrc" alt="출판사 로고" />
+  </button>
 </template>
