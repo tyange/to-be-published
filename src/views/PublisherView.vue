@@ -24,5 +24,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>hi</div>
+  <div class="overflow-hidden">hi</div>
 </template>

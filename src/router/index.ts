@@ -9,12 +9,14 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: MainView
+      component: MainView,
+      meta: { transition: 'fade' }
     },
     {
       path: '/:publisherName',
       name: 'publisher',
-      component: PublisherView
+      component: PublisherView,
+      meta: { transition: 'slide-fade' }
     }
   ]
 })
