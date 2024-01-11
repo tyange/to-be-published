@@ -10,13 +10,13 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: MainView,
-      meta: { transition: 'fade' }
+      meta: { transition: 'fade-faster' }
     },
     {
       path: '/:publisherName',
       name: 'publisher',
       component: PublisherView,
-      meta: { transition: 'slide-fade' }
+      meta: { transition: 'fade-slow' }
     }
   ]
 })

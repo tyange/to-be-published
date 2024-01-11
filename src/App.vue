@@ -11,26 +11,26 @@ import { RouterView } from 'vue-router'
 </template>
 
 <style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
+.fade-slow-enter-active {
+  transition: opacity 0.1s ease-out;
 }
 
-.fade-enter-from,
-.fade-leave-to {
+.fade-slow-leave-active {
+  transition: opacity 2s ease-out;
+}
+
+.fade-slow-enter-from,
+.fade-slow-leave-to {
   opacity: 0;
 }
 
-.slide-fade-enter-active {
+.fade-faster-fade-enter-active,
+.fade-faster-fade-leave-active {
   transition: all 0.3s ease-out;
 }
 
-.slide-fade-leave-active {
-  transition: all 1.5s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
+.fade-faster-fade-enter-from,
+.fade-faster-fade-leave-to {
   transform: translateX(-20px);
   opacity: 0;
 }
