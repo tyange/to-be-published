@@ -1,28 +1,39 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { useQuery } from '@tanstack/vue-query'
+
+import { useBooksStore } from '@/stores/books'
+
+import TheLoading from '@/components/TheLoading.vue'
+import TheError from '@/components/TheError.vue'
+import BookList from '@/components/BookList.vue'
+import PageButtons from '@/components/PageButtons.vue'
 
 import { BooksAPI } from '@/api/books'
-import type { SearchParams } from '@/types/searchParams'
 
 const route = useRoute()
+const store = useBooksStore()
+const { searchParams } = store
 
-onMounted(() => {
-  const params: SearchParams = {
-    page_no: 1,
-    page_size: import.meta.env.VITE_PAGE_SIZE as number,
-    cert_key: import.meta.env.VITE_SEOJI_API_KEY as string,
-    result_style: 'json',
-    deposit_yn: 'N',
-    order_by: 'DESC',
-    sort: 'PUBLISH_PREDATE',
-    publisher: route.params.publisherName as string
-  }
+searchParams.publisher = route.params.publisherName as string
 
-  BooksAPI.list(params)
+const {
+  isPending: bookListIsPending,
+  isError: bookListIsError,
+  data: bookListData
+} = useQuery({
+  queryKey: ['bookList', searchParams],
+  queryFn: () => BooksAPI.list(searchParams)
 })
 </script>
 
 <template>
-  <div class="overflow-hidden">hi</div>
+  <div>
+    <the-loading v-if="bookListIsPending"></the-loading>
+    <the-error v-if="bookListIsError"></the-error>
+    <template v-if="!bookListIsPending && !bookListIsError && bookListData">
+      <book-list :books="bookListData.data.docs"></book-list>
+      <page-buttons :page-counts="bookListData.data['TOTAL_COUNT']"></page-buttons>
+    </template>
+  </div>
 </template>

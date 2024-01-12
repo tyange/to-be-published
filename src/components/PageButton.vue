@@ -2,31 +2,29 @@
 import { useBooksStore } from '@/stores/books'
 import { computed } from 'vue'
 
-const store = useBooksStore()
 const props = defineProps<{
   pageNum: number
 }>()
 
-const fetchBooksByPageNum = (e: Event) => {
-  e.preventDefault()
+const store = useBooksStore()
+const { searchParams } = store
 
-  store.fetchBooksByPageNo(props.pageNum)
+const fetchBooksByPageNum = (pageNum: number) => {
+  searchParams['page_no'] = pageNum
 }
 
 const isHighlight = computed(() => {
-  const currentPageNo = store.currentPageNo
-
-  if (props.pageNum === currentPageNo) return true
+  if (props.pageNum === searchParams['page_no']) return true
 
   return false
 })
 </script>
 <template>
   <button
-    v-on:click="fetchBooksByPageNum"
+    @click="fetchBooksByPageNum(pageNum)"
     class="px-2 border-2 rounded-lg shadow-sm"
-    v-bind:class="{ 'font-semibold bg-neutral-300': isHighlight }"
+    :class="{ 'font-semibold bg-neutral-300': isHighlight }"
   >
-    {{ props.pageNum }}
+    {{ pageNum }}
   </button>
 </template>

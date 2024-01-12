@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import type { SearchParams } from '@/types/searchParams'
 
 interface Book {
   PUBLISHER: string
@@ -55,10 +56,20 @@ export const useBooksStore = defineStore({
   state: () => ({
     isLoading: false,
     totalCount: 0,
-    currentPageNo: 0,
+    currentPageNumber: 0,
     books: [] as Book[],
     savedParams: {} as InputParams,
-    error: null
+    error: null,
+    searchParams: {
+      page_no: 1,
+      page_size: import.meta.env.VITE_PAGE_SIZE as number,
+      cert_key: import.meta.env.VITE_SEOJI_API_KEY as string,
+      result_style: 'json',
+      deposit_yn: 'N',
+      order_by: 'DESC',
+      sort: 'PUBLISH_PREDATE',
+      publisher: ''
+    } as SearchParams
   }),
   getters: {
     getBooks(): Book[] {
@@ -100,7 +111,7 @@ export const useBooksStore = defineStore({
         const data: ResponseData = await res.data
 
         this.totalCount = parseInt(data.TOTAL_COUNT)
-        this.currentPageNo = parseInt(data.PAGE_NO)
+        this.currentPageNumber = parseInt(data.PAGE_NO)
         this.books = data.docs
         this.isLoading = false
       } catch (err: any) {
@@ -124,7 +135,7 @@ export const useBooksStore = defineStore({
         const data: ResponseData = await res.data
 
         this.totalCount = parseInt(data.TOTAL_COUNT)
-        this.currentPageNo = parseInt(data.PAGE_NO)
+        this.currentPageNumber = parseInt(data.PAGE_NO)
         this.books = data.docs
         this.isLoading = false
       } catch (err: any) {

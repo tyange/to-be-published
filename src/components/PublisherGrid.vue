@@ -12,8 +12,6 @@ const gridItem = ref(booksData)
 const dotClickHandler = (e: Event) => {
   const currentTarget = e.target
 
-  console.log((currentTarget as HTMLElement).dataset.index!)
-
   anime({
     targets: '.publisher-dot',
     scale: [
