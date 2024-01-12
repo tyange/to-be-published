@@ -6,7 +6,7 @@ import type { Book } from '@/types/book'
 defineProps<{ books: Book[] }>()
 </script>
 <template>
-  <ul class="flex flex-col gap-12 mb-5" ref="bookList">
+  <ul class="flex flex-col gap-12 pt-20 mb-10" ref="bookList">
     <li v-for="(book, index) in books" :key="index" class="w-full p-3 border shadow-md rounded-xl">
       <book-item
         :title="book.TITLE"

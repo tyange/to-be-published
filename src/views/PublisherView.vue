@@ -28,12 +28,14 @@ const {
 </script>
 
 <template>
-  <div>
-    <the-loading v-if="bookListIsPending"></the-loading>
-    <the-error v-if="bookListIsError"></the-error>
-    <template v-if="!bookListIsPending && !bookListIsError && bookListData">
-      <book-list :books="bookListData.data.docs"></book-list>
-      <page-buttons :page-counts="bookListData.data['TOTAL_COUNT']"></page-buttons>
-    </template>
+  <div class="flex justify-center w-full">
+    <div class="w-1/2">
+      <the-loading v-if="bookListIsPending"></the-loading>
+      <the-error v-if="bookListIsError"></the-error>
+      <template v-if="!bookListIsPending && !bookListIsError && bookListData">
+        <book-list :books="bookListData.data.docs"></book-list>
+        <page-buttons :page-counts="bookListData.data['TOTAL_COUNT']"></page-buttons>
+      </template>
+    </div>
   </div>
 </template>

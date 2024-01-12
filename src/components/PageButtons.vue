@@ -31,7 +31,7 @@ const pageNumbers = computed(() => {
 })
 </script>
 <template>
-  <div class="flex items-center text-gray-500 mb-7">
+  <div class="flex items-center justify-center my-10 text-gray-500">
     <template v-if="searchParams['page_no'] > 4">
       <page-button :page-num="1" />
       <span class="mx-2"> </span>
