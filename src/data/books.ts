@@ -6,12 +6,11 @@ import minumsaLogoImg from '../assets/logos/minumsa.jpg'
 import munjiLogoImg from '../assets/logos/munji.jpg'
 import hyundaimunhakLogoImg from '../assets/logos/hyndai-munhak.jpg'
 import achimdalLogoImg from '../assets/logos/achimdal.jpg'
-import hangyureLogoImg from '../assets/logos/hangyure.jpg'
 import zaummoumLogoImg from '../assets/logos/zaum-moum.jpg'
 import zakgajungsinLogoImg from '../assets/logos/zakga-jungsin.jpg'
 import eunhangnamuLogoImg from '../assets/logos/eunhang-namu.jpg'
 
-export const booksData: Publisher[] = [
+export const publishersData: Publisher[] = [
   {
     publisherName: '문학동네',
     publisherImageSrc: munhakdongneLogoImg,
@@ -40,11 +39,6 @@ export const booksData: Publisher[] = [
   {
     publisherName: '아침달',
     publisherImageSrc: achimdalLogoImg,
-    publisherDetailPageUrl: ''
-  },
-  {
-    publisherName: '한겨레출판',
-    publisherImageSrc: hangyureLogoImg,
     publisherDetailPageUrl: ''
   },
   {

@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import BookItem from './BookItem.vue'
 
-defineProps(['books'])
+import type { Book } from '@/types/book'
+
+defineProps<{ books: Book[] }>()
 </script>
 <template>
   <ul class="flex flex-col gap-12 mb-5" ref="bookList">

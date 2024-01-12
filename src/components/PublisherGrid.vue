@@ -5,9 +5,9 @@ import anime from 'animejs/lib/anime.es.js'
 
 import PublisherDot from './PublisherDot.vue'
 
-import { booksData } from '@/data/books'
+import { publishersData } from '@/data/books'
 
-const gridItem = ref(booksData)
+const gridItem = ref(publishersData)
 
 const dotClickHandler = (e: Event) => {
   const currentTarget = e.target
