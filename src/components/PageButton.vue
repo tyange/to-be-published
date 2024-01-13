@@ -22,7 +22,7 @@ const isHighlight = computed(() => {
 <template>
   <button
     @click="fetchBooksByPageNum(pageNum)"
-    class="px-2 border-2 rounded-lg shadow-sm"
+    class="px-2 bg-white border-2 rounded-lg shadow-sm"
     :class="{ 'font-semibold bg-neutral-300': isHighlight }"
   >
     {{ pageNum }}
