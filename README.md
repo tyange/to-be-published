@@ -2,7 +2,7 @@
 
 출간예정도서 검색기.
 <br>
-with Vue3 + Typescript, Pinia, Vercel 
+with Vue3, Typescript, Pinia, Tanstack-Query, Vercel 
 
 ## 배포
 
