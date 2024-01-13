@@ -6,7 +6,7 @@ import TheFooter from '@/components/TheFooter.vue'
 
 <template>
   <div
-    class="flex flex-col items-center justify-center w-full h-screen gap-10 overflow-hidden justify-sp bg-amber-100"
+    class="flex flex-col items-center justify-center w-full gap-5 xs:gap-0 xs:h-screen xs:grid xs:items-center bg-amber-100"
   >
     <the-header></the-header>
     <publisher-grid></publisher-grid>

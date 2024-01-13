@@ -35,7 +35,9 @@ const dotClickHandler = (e: Event) => {
 </script>
 
 <template>
-  <div class="grid items-center grid-cols-6 grid-rows-4 w-fit">
+  <div
+    class="grid items-center grid-cols-1 xs:grid-cols-3 xs:justify-self-center 2md:grid-cols-4 md:grid-cols-5 md:self-start w-fit"
+  >
     <publisher-dot
       v-for="(item, index) in gridItem"
       :key="item.publisherName"

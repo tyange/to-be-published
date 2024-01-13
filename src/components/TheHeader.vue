@@ -3,10 +3,10 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <header>
-    <div class="flex flex-col gap-5 w-[672px]">
+  <header class="2md:self-end md:self-center">
+    <div class="flex flex-col w-full gap-5 p-3">
       <router-link to="/" class="flex items-end w-fit">
-        <span class="text-4xl font-bold font-gowun-batang">출간예정도서 검색기</span>
+        <span class="text-3xl font-bold font-gowun-batang">출간예정도서 검색기</span>
       </router-link>
       <div class="flex flex-col flex-1 gap-1">
         <p class="text-xs italic font-gowun-batang">
