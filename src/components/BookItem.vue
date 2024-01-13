@@ -55,17 +55,14 @@ const convertedPreDate = computed(() => {
       <span class="text-sm md:text-base" v-if="convertedAuthors === null">
         {{ author }}
       </span>
-      <div
-        v-if="convertedAuthors !== null"
-        class="grid grid-cols-1 gap-2 xs:grid-cols-3 sm:grid-cols-4"
-      >
+      <div v-if="convertedAuthors !== null">
         <span
-          class="flex items-end text-sm break-all md:text-base"
+          class="text-sm break-all md:text-base"
           v-for="(convertedAuthor, index) in convertedAuthors"
           :key="convertedAuthor"
         >
           {{ convertedAuthor }}
-          <span v-if="index !== Object.keys(convertedAuthors).length - 1"> , </span>
+          <span v-if="index !== Object.keys(convertedAuthors).length - 1" class="pr-2">,</span>
         </span>
       </div>
     </div>
