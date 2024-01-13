@@ -29,7 +29,7 @@ const {
 
 <template>
   <div class="flex justify-center w-full">
-    <div class="w-1/2">
+    <div class="w-10/12 xs:w-3/4 sm:w-2/3 2md:w-7/12 lg:w-6/12 xl:w-5/12 2xl:w-4/12">
       <the-loading v-if="bookListIsPending"></the-loading>
       <the-error v-if="bookListIsError"></the-error>
       <template v-if="!bookListIsPending && !bookListIsError && bookListData">

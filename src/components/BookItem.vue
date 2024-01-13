@@ -57,24 +57,19 @@ const convertedPreDate = computed(() => {
       </span>
       <div
         v-if="convertedAuthors !== null"
-        class="grid gap-2 md:grid-cols-3"
-        v-bind:class="{
-          'grid-cols-3': Object.keys(convertedAuthors).length > 2,
-          'grid-cols-2': Object.keys(convertedAuthors).length < 3
-        }"
+        class="grid grid-cols-1 gap-2 xs:grid-cols-3 sm:grid-cols-4"
       >
         <span
-          class="flex text-sm md:text-base"
+          class="flex items-end text-sm break-all md:text-base"
           v-for="(convertedAuthor, index) in convertedAuthors"
           :key="convertedAuthor"
-          style="word-break: keep-all"
         >
           {{ convertedAuthor }}
           <span v-if="index !== Object.keys(convertedAuthors).length - 1"> , </span>
         </span>
       </div>
     </div>
-    <div class="flex gap-5">
+    <div class="flex flex-col gap-5 sm:flex-row">
       <div class="relative flex gap-2 p-6">
         <span class="absolute top-0 left-0 text-xs text-gray-300"> ISBN </span>
         <span class="text-sm md:text-base">{{ convertedIsbn }}</span>
