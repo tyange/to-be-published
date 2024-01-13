@@ -26,9 +26,3 @@ with Vue3, Typescript, Pinia, Tanstack-Query, Vercel
   * anime.js 패키지를 사용해서 staggered 효과를 추가.
   * page transition 효과를 추가.
   * 반응형 스타일링 조정.
-
-## 만든 사람
-
-Github: [tyange](https://github.com/tyange)
-<br>
-Email: [usun16@gmail.com](mailto:usun16@gmail.com)
