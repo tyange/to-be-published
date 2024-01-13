@@ -11,7 +11,7 @@ with Vue3, Typescript, Pinia, Tanstack-Query, Vercel
 ## 업데이트 기록
 
 * 2024-01-13
-  * Vue 3.4 적용
+  * Vue 3.4 적용.
   * Vite 버전 2에서 버전 5로 migration.
   * 기존에 form을 입력해서 검색하던 방식에서 출판사별로 버튼을 클릭해 검색하는 방식으로 변경.
     * 모든 출판사가 미납본 도서를 미리 등록하지 않음.
