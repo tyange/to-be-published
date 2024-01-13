@@ -1,6 +1,6 @@
 <script setup lang="ts"></script>
 <template>
-  <div class="flex justify-center w-full">
+  <div class="flex items-center justify-center w-full h-screen">
     <div class="lds-ellipsis">
       <div></div>
       <div></div>
