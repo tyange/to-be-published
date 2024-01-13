@@ -11,7 +11,7 @@ defineEmits<{
 <template>
   <router-link
     :to="{ name: 'publisher', params: { publisherName: item.publisherName } }"
-    class="w-20 h-20 m-4 overflow-hidden border border-gray-200 rounded-full cursor-pointer publisher-dot"
+    class="w-20 h-20 m-4 overflow-hidden transition-transform duration-200 border border-gray-200 rounded-full cursor-pointer publisher-dot hover:-translate-y-5"
     :data-index="index"
     @click="$emit('click-handler', $event)"
   >

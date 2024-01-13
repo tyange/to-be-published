@@ -19,7 +19,7 @@ const dotClickHandler = (e: Event) => {
       { value: 1, easing: 'easeInOutQuad', duration: 500 }
     ],
     translateY: [
-      { value: -10, easing: 'easeOutSine', duration: 250 },
+      { value: -50, easing: 'easeOutSine', duration: 250 },
       { value: 0, easing: 'easeInOutQuad', duration: 500 }
     ],
     opacity: [
