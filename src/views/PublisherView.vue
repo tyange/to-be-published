@@ -15,6 +15,7 @@ const route = useRoute()
 const store = useBooksStore()
 const { searchParams } = store
 
+searchParams.page_no = 1
 searchParams.publisher = route.params.publisherName as string
 
 const {
